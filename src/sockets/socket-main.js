@@ -12,7 +12,9 @@ const setupSocketIO = (io) => {
         addKey(socket.id, socket.handshake.query.childId);
         updateLoc(socket.handshake.query.childId, null);
         locationSocket(io, socket);
-      } else parentSocket(io, socket);
+      } else {
+        parentSocket(io, socket);
+      }
       console.log("connected to socket");
     } catch (err) {
       console.log(err);
