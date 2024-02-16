@@ -77,17 +77,23 @@ router.get("/get-child-meta-info", async (req, res) => {
   }
 });
 
-router.get("/get-live-loc", (req, res) => {
-  const { id } = req.body;
+router.get("/get-live-loc", async (req, res) => {
+  const { id } = req.query;
+  console.log(id);
   try {
-    const child = Child.findOne({ id: id });
-    res.json({
-      lon: child.lastLocation.lon,
-      lat: child.lastLocation.lat,
-      stat: true,
-    });
+    const child = await Child.findOne({ id: id });
+    if (child) {
+      res.json({
+        lon: child.lastLocation.lon,
+        lat: child.lastLocation.lat,
+        stat: true,
+      });
+    } else {
+      res.json({ stat: false });
+    }
   } catch (err) {
-    res.json({ star: false });
+    console.log(err);
+    res.json({ stat: false });
   }
 });
 
