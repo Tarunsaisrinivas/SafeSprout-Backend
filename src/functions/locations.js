@@ -5,7 +5,9 @@ const updateLastLocation = async (loc, childId) => {
   try {
     console.log(loc + " " + childId);
     const child = await Child.findOne({ id: childId });
+    console.log("Bef");
     child.lastLocation = loc;
+    console.log("Af");
     if (child.locHistory.length === 0) {
       console.log("In if");
       child.locHistory.push({
