@@ -20,8 +20,10 @@ const removeKey = (sid) => {
 const getKeys = () => keyMap;
 
 const updateLoc = (id, loc) => {
-  if (loc) {
+  try {
     childMap.set(id, loc);
+  } catch (err) {
+    console.log(err);
   }
 };
 
