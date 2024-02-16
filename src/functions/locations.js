@@ -21,7 +21,7 @@ async function updateLastLocation(loc, childId) {
         });
       }
     }
-    child.save();
+    await child.save(); // <-- Added await here to ensure the save operation is complete before continuing
   } catch (err) {
     console.log(err);
   }
