@@ -10,9 +10,9 @@ const {
 function locationSocket(io, socket) {
   socket.on("locLive", (loc) => {
     console.log("rec location");
-    console.log(loc);
     const location = { lat: loc.coords.latitude, lon: loc.coords.longitude };
     updateLastLocation(location, socket.handshake.query.childId);
+    console.log(location);
     updateLoc(socket.handshake.query.childId, location);
   });
 
