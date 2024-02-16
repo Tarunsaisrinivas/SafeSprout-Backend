@@ -9,13 +9,15 @@ const updateLastLocation = async (loc, childId) => {
     console.log(loc + " " + childId);
     const child = await Child.findOne({ id: childId });
     child.lastLocation = loc;
-    if (child.locHistory == []) {
+    if (child.locHistory.length === 0) {
       child.locHistory.push({
         time: new Date(),
         loc: loc,
       });
     } else {
-      const topLoc = child.locHistory.loc;
+      console.log(child.locHistory[child.locHistory.length - 1]);
+      console.log(topLoc);
+      const topLoc = child.locHistory[child.locHistory.length - 1];
       const dist = distance(topLoc, loc);
       if (dist >= 2) {
         child.locHistory.push({
