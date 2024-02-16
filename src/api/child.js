@@ -60,7 +60,12 @@ router.get("/get-child-meta-info", async (req, res) => {
   try {
     const child = await Child.findOne({ id: id });
     if (child) {
-      res.json({ id: child.id, name: child.name, stat: true });
+      res.json({
+        id: child.id,
+        name: child.name,
+        parent: child.parent,
+        stat: true,
+      });
     } else {
       res.json({ stat: false, err: false });
     }
