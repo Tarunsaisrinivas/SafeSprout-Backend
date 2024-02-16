@@ -2,6 +2,9 @@ const { Child } = require("../database/models");
 const distance = require("../functions/distance");
 
 const updateLastLocation = async (loc, childId) => {
+  console.log("In update");
+  console.log(loc);
+  console.log(childId);
   try {
     console.log(loc + " " + childId);
     const child = await Child.findOne({ id: childId });
