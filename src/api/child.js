@@ -56,7 +56,7 @@ router.post("/get-child-list", async (req, res) => {
 });
 
 router.get("/get-child-meta-info", async (req, res) => {
-  const { id } = req.body;
+  const { id } = req.query;
   try {
     const child = await Child.findOne({ id: id });
     if (child) {
