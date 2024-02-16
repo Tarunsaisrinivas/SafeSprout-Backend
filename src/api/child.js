@@ -77,4 +77,14 @@ router.get("/get-child-meta-info", async (req, res) => {
   }
 });
 
+router.get("/get-live-loc", (req, res) => {
+  const { id } = req.body;
+  try {
+    const child = Child.findOne({ id: id });
+    res.json({ ...child.lastLocation, stat: true });
+  } catch (err) {
+    res.json({ star: false });
+  }
+});
+
 module.exports = router;
