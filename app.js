@@ -3,8 +3,6 @@ const app = express();
 const mongoose = require("mongoose");
 const { dbConnector } = require("./src/const");
 
-const userAuth = require("./src/api/auth");
-
 mongoose
   .connect(dbConnector)
   .then(() => {
@@ -18,7 +16,11 @@ mongoose
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+const userAuth = require("./src/api/auth");
 app.use("/api/auth", userAuth);
+
+const childApi = require("./src/api/child");
+app.use("/api/child", childApi);
 
 const http = require("http");
 const socketIO = require("socket.io");
