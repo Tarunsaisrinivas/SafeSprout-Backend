@@ -3,7 +3,8 @@ const router = express.Router();
 
 const { User } = require("../database/models");
 const { Child } = require("../database/models");
-const NumUID = require("../utilities/uniqueid"); // Importing NumUID properly
+const NumUID = require("../utilities/uniqueid");
+const { getMap } = require("../utilities/childMap"); // Importing NumUID properly
 
 router.post("/create-new", async (req, res) => {
   const { childName, email, password } = req.body;
@@ -79,15 +80,24 @@ router.get("/get-child-meta-info", async (req, res) => {
 
 router.get("/get-live-loc", async (req, res) => {
   const { id } = req.query;
-  console.log(id);
   try {
     const child = await Child.findOne({ id: id });
     if (child) {
-      res.json({
-        lon: child.lastLocation.lon,
-        lat: child.lastLocation.lat,
-        stat: true,
-      });
+      if (getMap().has(id)) {
+        res.json({
+          lon: child.lastLocation.lon,
+          lat: child.lastLocation.lat,
+          stat: true,
+          con: true,
+        });
+      } else {
+        res.json({
+          lon: child.lastLocation.lon,
+          lat: child.lastLocation.lat,
+          stat: true,
+          con: false,
+        });
+      }
     } else {
       res.json({ stat: false });
     }

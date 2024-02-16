@@ -2,7 +2,7 @@ const { Child, User } = require("../database/models.js");
 const { getMap } = require("../utilities/childMap");
 
 function parentSocket(io, socket) {
-  console.log("In parent socket")
+  console.log("In parent socket");
   const email = socket.handshake.query.email;
   setInterval(async () => {
     const usr = await User.findOne({ email: email });
