@@ -26,6 +26,7 @@ const updateLastLocation = async (loc, childId) => {
     }
     await child.save();
   } catch (err) {
+    console.log(err);
     console.log("Error in latets location");
   }
 };
