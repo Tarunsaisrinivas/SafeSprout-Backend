@@ -10,8 +10,6 @@ const setupSocketIO = (io) => {
       if (socket.handshake.query.isChild) {
         addKey(socket.id, socket.handshake.query.childId);
         updateLoc(socket.handshake.query.childId, null);
-        console.log(getKeys());
-        console.log(getMap());
         locationSocket(io, socket);
       } else parentSocket(io, socket);
       console.log("connected to socket");
