@@ -7,6 +7,7 @@ const setupSocketIO = (io) => {
   socketIo = io;
   io.on("connection", (socket) => {
     try {
+      console.log(socket.handshake.query);
       if (socket.handshake.query.isChild) {
         addKey(socket.id, socket.handshake.query.childId);
         updateLoc(socket.handshake.query.childId, null);
