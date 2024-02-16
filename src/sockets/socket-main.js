@@ -4,8 +4,7 @@ const setupSocketIO = (io) => {
   socketIo = io;
   io.on("connection", (socket) => {
     try {
-      console.log(socket.handshake.query);
-      locationSocket(io, socket);
+      if (socket.handshake.query.isChild) locationSocket(io, socket);
       console.log("connected to socket");
     } catch (err) {
       console.log(err);
