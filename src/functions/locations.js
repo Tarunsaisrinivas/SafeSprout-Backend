@@ -6,6 +6,7 @@ const updateLastLocation = async (loc, childId) => {
     console.log(loc + " " + childId);
     const child = await Child.findOne({ id: childId });
     console.log("Bef");
+    console.log(child);
     child.lastLocation = loc;
     console.log("Af");
     if (child.locHistory.length === 0) {
