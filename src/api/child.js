@@ -58,13 +58,14 @@ router.post("/get-child-list", async (req, res) => {
 router.get("/get-child-meta-info", async (req, res) => {
   const { id } = req.body;
   try {
-    const child = Child.findOne({ id: id });
+    const child = await Child.findOne({ id: id });
     if (child) {
-      res.json({ ...child, stat: true });
+      res.json({ id: child.id, name: child.name, stat: true });
     } else {
       res.json({ stat: false, err: false });
     }
   } catch (err) {
+    console.log(err);
     res.json({ stat: false, err: true });
   }
 });
