@@ -17,7 +17,11 @@ const updateLastLocation = async (loc, childId) => {
     } else {
       console.log("In else");
       const topLoc = child.locHistory[child.locHistory.length - 1];
-      const dist = distance(topLoc, loc);
+      console.log("top loc");
+      console.log(top.loc);
+      console.log("loc");
+      console.log(loc);
+      const dist = distance(topLoc.loc, loc);
       console.log(dist);
       if (dist >= 1) {
         child.locHistory.push({
