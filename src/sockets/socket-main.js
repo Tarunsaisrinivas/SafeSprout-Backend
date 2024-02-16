@@ -3,8 +3,13 @@ const locationSocket = require("./loc-soc");
 const setupSocketIO = (io) => {
   socketIo = io;
   io.on("connection", (socket) => {
-    locationSocket(io, socket);
-    console.log("connected to socket");
+    try {
+      console.log(socket.handshake.query);
+      locationSocket(io, socket);
+      console.log("connected to socket");
+    } catch (err) {
+      console.log(err);
+    }
   });
 };
 

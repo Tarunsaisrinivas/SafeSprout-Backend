@@ -15,8 +15,15 @@ const chilsSchema = new mongoose.Schema({
     lat: Number,
     lon: Number,
   },
-  locHistory: [{ lat: Number, lon: Number }],
+  locHistory: [
+    {
+      time: Date,
+      loc: { lat: Number, lon: Number },
+    },
+  ],
 });
+
+const pathSchema = new mongoose.Schema({})
 
 const Child = mongoose.model("child", chilsSchema);
 

@@ -1,4 +1,4 @@
-function distange(location1, location2) {
+function distance(location1, location2) {
   const earthRadius = 6371000; // Radius of the Earth in meters
   const { lon: lon1, lat: lat1 } = location1;
   const { lon: lon2, lat: lat2 } = location2;
@@ -28,4 +28,4 @@ function toRadians(degrees) {
   return degrees * (Math.PI / 180);
 }
 
-module.exports = distange;
+module.exports = distance;

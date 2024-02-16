@@ -7,6 +7,7 @@ const NumUID = require("../utilities/uniqueid"); // Importing NumUID properly
 
 router.post("/create-new", async (req, res) => {
   const { childName, email, password } = req.body;
+  console.log(req.body);
   try {
     const parent = await User.findOne({ email: email });
     if (parent) {
