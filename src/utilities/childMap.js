@@ -3,7 +3,7 @@ const keyMap = new Map();
 
 const addKey = (sid, id) => {
   try {
-    keyMap.put(sid, id);
+    keyMap.set(sid, id);
   } catch (err) {
     console.log(err);
   }
@@ -20,7 +20,9 @@ const removeKey = (sid) => {
 const getKeys = () => keyMap;
 
 const updateLoc = (id, loc) => {
-  childMap.put(id, { lat: loc.latitude, lon: loc.longitude });
+  if (loc) {
+    childMap.set(id, loc);
+  }
 };
 
 const removeId = (id) => {
