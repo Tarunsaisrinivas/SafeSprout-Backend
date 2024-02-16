@@ -81,7 +81,11 @@ router.get("/get-live-loc", (req, res) => {
   const { id } = req.body;
   try {
     const child = Child.findOne({ id: id });
-    res.json({ ...child.lastLocation, stat: true });
+    res.json({
+      lon: child.lastLocation.lon,
+      lat: child.lastLocation.lat,
+      stat: true,
+    });
   } catch (err) {
     res.json({ star: false });
   }
