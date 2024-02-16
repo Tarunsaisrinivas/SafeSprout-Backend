@@ -6,8 +6,13 @@ function parentSocket(io, socket) {
   setInterval(async () => {
     const usr = await User.findOne({ email: email });
     usr.children.forEach((id) => {
-      const loc = getMap().get(id);
-      socket.emit("child-loc-live", { stat: true, loc: loc, id: id });
+      try {
+        const loc = getMap().get(id);
+        socket.emit("child-loc-live", { stat: true, loc: loc, id: id });
+        socket.emit();
+      } catch (err) {
+        socket.emit("child-loc-live", { stat: false, id: id });
+      }
     });
   }, 5000);
 }
