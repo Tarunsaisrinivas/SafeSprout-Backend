@@ -5,7 +5,6 @@ const updateLastLocation = async (loc, childId) => {
   try {
     console.log(loc + " " + childId);
     const child = await Child.findOne({ id: childId });
-    child.lastLocation = loc;
     if (child.locHistory == []) {
       child.locHistory.push({
         time: new Date(),
