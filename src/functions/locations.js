@@ -5,6 +5,7 @@ const updateLastLocation = async (loc, childId) => {
   try {
     console.log(loc + " " + childId);
     const child = await Child.findOne({ id: childId });
+    child.lastLocation = loc;
     if (child.locHistory == []) {
       child.locHistory.push({
         time: new Date(),
@@ -20,9 +21,9 @@ const updateLastLocation = async (loc, childId) => {
         });
       }
     }
-    await child.save(); // <-- Added await here to ensure the save operation is complete before continuing
+    await child.save();
   } catch (err) {
-    console.log(err);
+    console.log("Error in latets location");
   }
 };
 

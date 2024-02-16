@@ -17,6 +17,7 @@ router.post("/create-new", async (req, res) => {
           id: id,
           name: childName,
           parent: email,
+          lastLocation: null,
         });
         try {
           newChild.save();
