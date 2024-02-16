@@ -14,7 +14,6 @@ const updateLastLocation = async (loc, childId) => {
       } else {
         const topLoc = child.locHistory[child.locHistory.length - 1];
         const dist = distance(topLoc.loc, loc);
-        console.log(dist);
         if (dist >= 500) {
           child.locHistory.push({
             time: new Date(),
